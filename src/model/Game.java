@@ -10,6 +10,7 @@ public class Game {
 
     private int score;
     private int roundnr;
+    private String category;
 
     private HashMap<String, Integer> chosenEntries;
     private String input;
@@ -18,15 +19,16 @@ public class Game {
     private DataModel dataModel;
 
     public Game(String category) {
+        this.category = category;
         this.score = 0;
         this.roundnr = 1;
         this.input = "";
-        this.dataModel = new DataModel(category);
 
         createQuestion();
     }
 
     public void createQuestion() {
+        this.dataModel = new DataModel(this.category);
         this.chosenEntries = getRandomEntries(dataModel.getEntries(), 4);
 
         HashMap<Character, Integer> entryMap = new HashMap<>();
@@ -66,10 +68,14 @@ public class Game {
     }
 
     public int checkAnswer(final int seconds) {
-        if (this.input.equals(this.correctAnswer)) {
+        if (isCorrect()) {
             return seconds;
         }
         return -seconds;
+    }
+
+    public Boolean isCorrect() {
+        return this.input.equals(this.correctAnswer);
     }
 
     public void endRound(final int seconds) {

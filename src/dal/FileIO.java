@@ -7,11 +7,23 @@ import java.io.IOException;
 import java.util.HashMap;
 
 public final class FileIO {
+
+    private static String[] categories = {
+            "speed",
+            "size"
+    };
+
     private FileIO() {
     }
 
-    public static HashMap<String, Integer> getCategoryEntries(final String category) {
+    public static HashMap<String, Integer> getCategoryEntries(final String cat) {
         HashMap<String, Integer> map = new HashMap<>();
+        String category = cat;
+
+        if (category.equals("mix")) {
+            int randomIndex = (int) (Math.random() * categories.length);
+            category = categories[randomIndex];
+        }
 
         try (BufferedReader reader = getReader(category)) {
             String line = reader.readLine();
