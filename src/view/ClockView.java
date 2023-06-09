@@ -56,12 +56,9 @@ public class ClockView extends Pane {
                     } else if (i == 2) {
                         arc.setFill(Color.RED);
                     }
-                    if (i == 0) {
-                        view.openWelcomeView();
-                        return null;
-                    }
                     Thread.sleep(SECOND);
                 }
+                view.openBetweenView();
                 return null;
             }
         };
@@ -71,5 +68,6 @@ public class ClockView extends Pane {
         Thread thread = new Thread(task);
         thread.setDaemon(true);
         thread.start();
+
     }
 }

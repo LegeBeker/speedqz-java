@@ -37,7 +37,7 @@ public class GameView extends HBox {
         leftSide.getChildren().addAll(clock, score);
 
         PicturesView pictures = new PicturesView();
-        InputView input = new InputView();
+        InputView input = new InputView(view);
 
         rightSide.getChildren().addAll(pictures, input);
 
