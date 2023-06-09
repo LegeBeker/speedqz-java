@@ -73,6 +73,16 @@ public class BetweenView extends VBox {
         Button nextRoundButton = new Button("Volgende ronde");
         nextRoundButton.setOnAction(e -> view.startNewRound());
 
+        this.setOnKeyPressed(e -> {
+            switch (e.getCode()) {
+                case ENTER:
+                    view.startNewRound();
+                    break;
+                default:
+                    break;
+            }
+        });
+
         this.getChildren().addAll(correctAnswer, answer, title, info, nextRoundButton);
     }
 }

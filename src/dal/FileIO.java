@@ -56,7 +56,6 @@ public final class FileIO {
 
     public static BufferedReader getReader(final String category) {
         String categoryFile = "/files/cat_" + category + ".txt";
-        System.out.println(categoryFile);
         String path = FileIO.class.getResource(categoryFile).getPath();
         java.io.File file = new File(path);
 

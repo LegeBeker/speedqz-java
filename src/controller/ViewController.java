@@ -31,16 +31,21 @@ public class ViewController extends Scene {
         this.openWelcomeView();
     }
 
+    public void changeView(final Pane pane) {
+        this.setOnKeyPressed(null);
+        this.setRoot(pane);
+    }
+
     public Background getBackground() {
         return this.background;
     }
 
     public void openWelcomeView() {
-        this.setRoot(new WelcomeView(this));
+        changeView(new WelcomeView(this));
     }
 
     public void openEndView() {
-        this.setRoot(new EndView(this));
+        changeView(new EndView(this));
     }
 
     public void openGameView(final String category) {
@@ -69,7 +74,7 @@ public class ViewController extends Scene {
     }
 
     public void openBetweenView() {
-        this.setRoot(new BetweenView(this));
+        changeView(new BetweenView(this));
     }
 
     public int getRoundNr() {
