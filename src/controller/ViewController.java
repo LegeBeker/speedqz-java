@@ -66,7 +66,7 @@ public class ViewController extends Scene {
 
         this.clockModel.getTimer().addListener((observable, oldValue, newValue) -> {
             if (newValue.intValue() == 0) {
-                endRound();
+                endRound(true);
             }
         });
     }
@@ -87,8 +87,10 @@ public class ViewController extends Scene {
         return this.clockModel.getCountdown();
     }
 
-    public void endRound() {
-        this.game.endRound();
+    public void endRound(final Boolean timeOut) {
+        if (!timeOut) {
+            this.game.endRound();
+        }
         openBetweenView();
     }
 

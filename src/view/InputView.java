@@ -19,7 +19,7 @@ public class InputView extends VBox {
         this.setOnKeyPressed(e -> {
             switch (e.getCode()) {
                 case ENTER:
-                    view.endRound();
+                    view.endRound(false);
                     break;
                 default:
                     break;
