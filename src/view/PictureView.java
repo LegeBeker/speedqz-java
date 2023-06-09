@@ -28,7 +28,7 @@ public class PictureView extends VBox {
 
         stackPane.getChildren().addAll(imageView, letterText);
 
-        Text nameText = new Text(name);
+        Text nameText = new Text(name.replace("_", " "));
         nameText.setFill(Color.WHITE);
         nameText.setStroke(Color.BLACK);
         nameText.setFont(Font.font("Arial", FontWeight.BOLD, 30));
