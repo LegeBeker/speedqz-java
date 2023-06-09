@@ -92,6 +92,11 @@ public class InputView extends VBox {
     }
 
     private void setLetter(final String letter) {
+        if (first.getText().equals(letter) || second.getText().equals(letter) || third.getText().equals(letter)
+                || fourth.getText().equals(letter)) {
+            return;
+        }
+
         if (first.getText().equals("_")) {
             first.setText(letter);
         } else if (second.getText().equals("_")) {
