@@ -1,6 +1,7 @@
 package view;
 
 import controller.ViewController;
+import javafx.scene.control.Label;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.VBox;
@@ -15,6 +16,11 @@ public class InputView extends VBox {
         this.setBackground(new Background(new BackgroundFill(Color.BLACK, null, null)));
 
         this.setPrefSize(WIDTH, HEIGHT);
+
+        Label instructions = new Label(view.getInstructions());
+        instructions.setTextFill(Color.ORANGE);
+        instructions.setStyle("-fx-font-size: 20px;");
+        this.getChildren().add(instructions);
 
         this.setOnKeyPressed(e -> {
             switch (e.getCode()) {

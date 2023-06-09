@@ -50,15 +50,15 @@ public class WelcomeView extends HBox {
 
         Button speedButton = new Button("Snelheid");
         speedButton.setPrefSize(BUTTONWIDTH, BUTTONHEIGHT);
-        speedButton.setOnAction(e -> view.openGameView("Speed"));
+        speedButton.setOnAction(e -> view.openGameView("speed"));
 
         Button sizeButton = new Button("Grootte");
         sizeButton.setPrefSize(BUTTONWIDTH, BUTTONHEIGHT);
-        sizeButton.setOnAction(e -> view.openGameView("Size"));
+        sizeButton.setOnAction(e -> view.openGameView("size"));
 
         Button mixButton = new Button("Mix");
         mixButton.setPrefSize(BUTTONWIDTH, BUTTONHEIGHT);
-        mixButton.setOnAction(e -> view.openGameView("Mix"));
+        mixButton.setOnAction(e -> view.openGameView("mix"));
 
         rightSide.getChildren().addAll(titleRight, speedButton, sizeButton, mixButton);
 

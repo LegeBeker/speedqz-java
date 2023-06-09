@@ -4,7 +4,6 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import model.ClockModel;
 import model.Game;
@@ -15,7 +14,6 @@ import view.WelcomeView;
 
 public class ViewController extends Scene {
 
-    private StackPane rootPane;
     private final Background background;
 
     private Game game;
@@ -25,17 +23,9 @@ public class ViewController extends Scene {
     public ViewController() {
         super(new Pane());
 
-        this.rootPane = new StackPane();
-        this.setRoot(this.rootPane);
-
         this.background = new Background(new BackgroundFill(Color.BEIGE, null, null));
 
         this.openWelcomeView();
-    }
-
-    public void changeView(final Pane pane) {
-        this.rootPane.getChildren().clear();
-        this.rootPane.getChildren().add(pane);
     }
 
     public Background getBackground() {
@@ -43,18 +33,18 @@ public class ViewController extends Scene {
     }
 
     public void openWelcomeView() {
-        changeView(new WelcomeView(this));
+        this.setRoot(new WelcomeView(this));
     }
 
     public void openGameView(final String category) {
         this.game = new Game(category);
         startNewClock();
-        changeView(new GameView(this, this.clockView));
+        this.setRoot(new GameView(this, this.clockView));
     }
 
     public void openGameView() {
         startNewClock();
-        changeView(new GameView(this, this.clockView));
+        this.setRoot(new GameView(this, this.clockView));
     }
 
     public void startNewClock() {
@@ -72,7 +62,7 @@ public class ViewController extends Scene {
     }
 
     public void openBetweenView() {
-        changeView(new BetweenView(this));
+        this.setRoot(new BetweenView(this));
     }
 
     public int getRoundNr() {
@@ -85,6 +75,10 @@ public class ViewController extends Scene {
 
     public int getClock() {
         return this.clockModel.getCountdown();
+    }
+
+    public String getInstructions() {
+        return this.game.getInstructions();
     }
 
     public void endRound(final Boolean timeOut) {

@@ -1,24 +1,37 @@
 package model;
 
+import java.util.HashMap;
+import java.util.Random;
+
 public class Game {
 
     private int score;
     private int roundnr;
-    private String category;
 
-    private String[] pictures;
+    private HashMap<String, Integer> chosenEntries;
     private String input;
 
+    private DataModel dataModel;
+
     public Game(String category) {
-        this.category = category;
         this.score = 0;
         this.roundnr = 1;
-        this.pictures = new String[4];
+        this.input = "";
+        this.dataModel = new DataModel(category);
+
         createQuestion();
     }
 
     public void createQuestion() {
-        // TODO - implement Game.createQuestion
+        this.chosenEntries = new HashMap<>();
+        Random rand = new Random();
+        for (int i = 0; i < 4; i++) {
+            int randomIndex = rand.nextInt(dataModel.getEntries().size());
+            chosenEntries.put((String) dataModel.getEntries().keySet().toArray()[randomIndex],
+                    (Integer) dataModel.getEntries().values().toArray()[randomIndex]);
+        }
+        // TODO - Shuffle the entries
+
     }
 
     public int checkAnswer() {
@@ -34,6 +47,10 @@ public class Game {
     public void startNewRound() {
         this.roundnr++;
         createQuestion();
+    }
+
+    public String getInstructions() {
+        return this.dataModel.getInstructions();
     }
 
     public int getRoundNr() {
