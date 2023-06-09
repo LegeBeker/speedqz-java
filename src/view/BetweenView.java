@@ -24,6 +24,15 @@ public class BetweenView extends VBox {
         this.setAlignment(Pos.CENTER);
         this.setSpacing(SPACING);
 
+        Text correctAnswer = new Text("Het juiste antwoord was:");
+        correctAnswer.setFont(Font.font("Arial", FontWeight.BOLD, FONTSIZE));
+
+        Text answer = new Text(view.getAnswer());
+        answer.setFont(Font.font("Arial", FontWeight.BOLD, FONTSIZE));
+
+        Text title = new Text("Tussenstand:");
+        title.setFont(Font.font("Arial", FontWeight.BOLD, FONTSIZE));
+
         HBox info = new HBox();
         info.setAlignment(Pos.CENTER);
         info.setSpacing(SPACING);
@@ -59,6 +68,6 @@ public class BetweenView extends VBox {
         Button nextRoundButton = new Button("Volgende ronde");
         nextRoundButton.setOnAction(e -> view.startNewRound());
 
-        this.getChildren().addAll(info, nextRoundButton);
+        this.getChildren().addAll(correctAnswer, answer, title, info, nextRoundButton);
     }
 }
