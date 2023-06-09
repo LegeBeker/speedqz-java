@@ -72,8 +72,16 @@ public class Game {
         return this.dataModel.getInstructions();
     }
 
+    public HashMap<String, Integer> getChosenEntries() {
+        return this.chosenEntries;
+    }
+
     public int getRoundNr() {
         return this.roundnr;
+    }
+
+    public String getCategory() {
+        return this.dataModel.getCategory();
     }
 
     public int getScore() {
@@ -82,5 +90,9 @@ public class Game {
 
     public void setInput(String input) {
         this.input = input;
+    }
+
+    public String getAnswer() {
+        return this.correctAnswer;
     }
 }

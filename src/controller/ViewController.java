@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.HashMap;
+
 import javafx.scene.Scene;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -81,6 +83,10 @@ public class ViewController extends Scene {
         return this.game.getInstructions();
     }
 
+    public HashMap<String, Integer> getChosenEntries() {
+        return this.game.getChosenEntries();
+    }
+
     public void setInput(final String input) {
         this.game.setInput(input);
     }
@@ -96,5 +102,13 @@ public class ViewController extends Scene {
     public void startNewRound() {
         this.game.startNewRound();
         openGameView();
+    }
+
+    public String getImagePath(String name) {
+        return "file:resources/pics/" + this.game.getCategory() + "/" + name + ".jpg";
+    }
+
+    public String getAnswer() {
+        return this.game.getAnswer();
     }
 }
