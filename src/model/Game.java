@@ -27,13 +27,7 @@ public class Game {
     }
 
     public void createQuestion() {
-        this.chosenEntries = new HashMap<>();
-        Random rand = new Random();
-        for (int i = 0; i < 4; i++) {
-            int randomIndex = rand.nextInt(dataModel.getEntries().size() - 1);
-            chosenEntries.put((String) dataModel.getEntries().keySet().toArray()[randomIndex],
-                    (Integer) dataModel.getEntries().values().toArray()[randomIndex]);
-        }
+        this.chosenEntries = getRandomEntries(dataModel.getEntries(), 4);
 
         HashMap<Character, Integer> entryMap = new HashMap<>();
 
@@ -50,6 +44,25 @@ public class Game {
         }
 
         this.correctAnswer = correctAnswerBuilder.toString();
+    }
+
+    private HashMap<String, Integer> getRandomEntries(final HashMap<String, Integer> entries, final int amount) {
+        HashMap<String, Integer> chosenEntries = new HashMap<>();
+        Random random = new Random();
+
+        for (int i = 0; i < amount; i++) {
+            int randomIndex = random.nextInt(entries.size());
+            String randomKey = (String) entries.keySet().toArray()[randomIndex];
+            int randomValue = entries.get(randomKey);
+
+            if (!chosenEntries.containsKey(randomKey)) {
+                chosenEntries.put(randomKey, randomValue);
+            } else {
+                i--;
+            }
+        }
+
+        return chosenEntries;
     }
 
     public int checkAnswer(final int seconds) {
