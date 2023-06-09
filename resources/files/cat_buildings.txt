@@ -1,0 +1,9 @@
+van oud naar jongst
+acropolis -525
+atomium 1958
+colosseum 70
+de_blob 2013
+eiffeltoren 1887
+pyramides -2570
+rijksmuseum 1876
+witte_huis 1792

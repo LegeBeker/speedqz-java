@@ -8,22 +8,11 @@ import java.util.HashMap;
 
 public final class FileIO {
 
-    private static String[] categories = {
-            "speed",
-            "size"
-    };
-
     private FileIO() {
     }
 
-    public static HashMap<String, Integer> getCategoryEntries(final String cat) {
+    public static HashMap<String, Integer> getCategoryEntries(final String category) {
         HashMap<String, Integer> map = new HashMap<>();
-        String category = cat;
-
-        if (category.equals("mix")) {
-            int randomIndex = (int) (Math.random() * categories.length);
-            category = categories[randomIndex];
-        }
 
         try (BufferedReader reader = getReader(category)) {
             String line = reader.readLine();
@@ -67,6 +56,7 @@ public final class FileIO {
 
     public static BufferedReader getReader(final String category) {
         String categoryFile = "/files/cat_" + category + ".txt";
+        System.out.println(categoryFile);
         String path = FileIO.class.getResource(categoryFile).getPath();
         java.io.File file = new File(path);
 

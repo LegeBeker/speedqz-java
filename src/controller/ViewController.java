@@ -105,7 +105,7 @@ public class ViewController extends Scene {
             this.clockModel.stop();
             this.game.endRound(this.clockModel.getCountdown());
         }
-        if (this.game.getRoundNr() == 1) {
+        if (this.game.getRoundNr() == 10) {
             openEndView();
             return;
         }
