@@ -83,7 +83,8 @@ public class ViewController extends Scene {
 
     public void endRound(final Boolean timeOut) {
         if (!timeOut) {
-            this.game.endRound();
+            this.clockModel.stop();
+            this.game.endRound(this.clockModel.getCountdown());
         }
         openBetweenView();
     }

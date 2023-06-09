@@ -55,11 +55,6 @@ public class ClockModel extends Task<Void> {
         return this.timer.get();
     }
 
-    public void reset() {
-        cancel();
-        this.timer.set(COUNTDOWN);
-    }
-
     public void stop() {
         cancel();
     }

@@ -23,6 +23,7 @@ public class MainController extends Application {
         stage.setMinWidth(MINWIDTH);
 
         stage.setResizable(false);
+        stage.setFullScreen(true);
 
         stage.centerOnScreen();
         stage.isAlwaysOnTop();

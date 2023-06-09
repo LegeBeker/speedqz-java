@@ -1,6 +1,9 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 public class Game {
@@ -10,6 +13,7 @@ public class Game {
 
     private HashMap<String, Integer> chosenEntries;
     private String input;
+    private String correctAnswer;
 
     private DataModel dataModel;
 
@@ -26,22 +30,37 @@ public class Game {
         this.chosenEntries = new HashMap<>();
         Random rand = new Random();
         for (int i = 0; i < 4; i++) {
-            int randomIndex = rand.nextInt(dataModel.getEntries().size());
+            int randomIndex = rand.nextInt(dataModel.getEntries().size() - 1);
             chosenEntries.put((String) dataModel.getEntries().keySet().toArray()[randomIndex],
                     (Integer) dataModel.getEntries().values().toArray()[randomIndex]);
         }
-        // TODO - Shuffle the entries
 
+        HashMap<Character, Integer> entryMap = new HashMap<>();
+
+        for (int i = 0; i < chosenEntries.size(); i++) {
+            entryMap.put((char) (i + 65), (Integer) chosenEntries.values().toArray()[i]);
+        }
+
+        List<Map.Entry<Character, Integer>> list = new ArrayList<>(entryMap.entrySet());
+        list.sort(Map.Entry.comparingByValue());
+
+        StringBuilder correctAnswerBuilder = new StringBuilder();
+        for (Map.Entry<Character, Integer> entry : list) {
+            correctAnswerBuilder.append(entry.getKey());
+        }
+
+        this.correctAnswer = correctAnswerBuilder.toString();
     }
 
-    public int checkAnswer() {
-        // TODO - implement Game.checkAnswer
-        return 0;
+    public int checkAnswer(final int seconds) {
+        if (this.input.equals(this.correctAnswer)) {
+            return seconds;
+        }
+        return -seconds;
     }
 
-    public void endRound() {
-        int points = checkAnswer();
-        this.score += points;
+    public void endRound(final int seconds) {
+        this.score += checkAnswer(seconds);
     }
 
     public void startNewRound() {
