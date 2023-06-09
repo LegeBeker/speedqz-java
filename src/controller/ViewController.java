@@ -7,6 +7,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import model.Game;
+import view.BetweenView;
 import view.GameView;
 import view.WelcomeView;
 
@@ -30,7 +31,7 @@ public class ViewController extends Scene {
 
     public void changeView(final Pane pane) {
         this.rootPane.getChildren().clear();
-        this.rootPane.getChildren().addAll(pane);
+        this.rootPane.getChildren().add(pane);
     }
 
     public Background getBackground() {
@@ -46,11 +47,29 @@ public class ViewController extends Scene {
         changeView(new GameView(this));
     }
 
+    public void openGameView() {
+        changeView(new GameView(this));
+    }
+
+    public void openBetweenView() {
+        changeView(new BetweenView(this));
+    }
+
     public int getRoundNr() {
         return this.game.getRoundNr();
     }
 
     public int getScore() {
         return this.game.getScore();
+    }
+
+    public void endRound() {
+        this.game.endRound();
+        openBetweenView();
+    }
+
+    public void startNewRound() {
+        this.game.startNewRound();
+        openGameView();
     }
 }
