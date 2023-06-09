@@ -12,7 +12,7 @@ public class GameView extends HBox {
     private static final int HEIGHT = 200;
     private static final int SPACING = 20;
 
-    public GameView(final ViewController view) {
+    public GameView(final ViewController view, final ClockView clock) {
         this.setBackground(view.getBackground());
         this.setSpacing(SPACING);
         this.setPadding(new Insets(SPACING));
@@ -27,10 +27,9 @@ public class GameView extends HBox {
         rightSide.setAlignment(Pos.CENTER);
         rightSide.setSpacing(SPACING);
 
-        ClockView clock = new ClockView(view);
         clock.setPrefHeight(HEIGHT);
 
-        ScoreView score = new ScoreView(view.getScore(), view.getRoundNr());
+        ScoreView score = new ScoreView(view.getRoundNr(), view.getScore());
         score.setAlignment(Pos.TOP_CENTER);
         VBox.setVgrow(score, Priority.ALWAYS);
 
