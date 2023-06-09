@@ -24,7 +24,12 @@ public class BetweenView extends VBox {
         this.setAlignment(Pos.CENTER);
         this.setSpacing(SPACING);
 
-        Text correctAnswer = new Text("Het juiste antwoord was:");
+        Text correctAnswer;
+        if (view.isCorrect()) {
+            correctAnswer = new Text("Correct! Het antwoord was:");
+        } else {
+            correctAnswer = new Text("Incorrect, Het juiste antwoord was:");
+        }
         correctAnswer.setFont(Font.font("Arial", FontWeight.BOLD, FONTSIZE));
 
         Text answer = new Text(view.getAnswer());

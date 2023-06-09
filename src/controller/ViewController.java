@@ -11,6 +11,7 @@ import model.ClockModel;
 import model.Game;
 import view.BetweenView;
 import view.ClockView;
+import view.EndView;
 import view.GameView;
 import view.WelcomeView;
 
@@ -36,6 +37,10 @@ public class ViewController extends Scene {
 
     public void openWelcomeView() {
         this.setRoot(new WelcomeView(this));
+    }
+
+    public void openEndView() {
+        this.setRoot(new EndView(this));
     }
 
     public void openGameView(final String category) {
@@ -91,10 +96,18 @@ public class ViewController extends Scene {
         this.game.setInput(input);
     }
 
+    public Boolean isCorrect() {
+        return this.game.isCorrect();
+    }
+
     public void endRound(final Boolean timeOut) {
         if (!timeOut) {
             this.clockModel.stop();
             this.game.endRound(this.clockModel.getCountdown());
+        }
+        if (this.game.getRoundNr() == 1) {
+            openEndView();
+            return;
         }
         openBetweenView();
     }
