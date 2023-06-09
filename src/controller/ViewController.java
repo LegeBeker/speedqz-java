@@ -81,6 +81,10 @@ public class ViewController extends Scene {
         return this.game.getInstructions();
     }
 
+    public void setInput(final String input) {
+        this.game.setInput(input);
+    }
+
     public void endRound(final Boolean timeOut) {
         if (!timeOut) {
             this.clockModel.stop();
