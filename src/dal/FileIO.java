@@ -35,7 +35,7 @@ public final class FileIO {
                 map.put(fullName, value);
             }
         } catch (IOException | IncorrectCatFileException e) {
-            e.printStackTrace();
+            System.err.println(e.getMessage());
         }
         return map;
     }
@@ -49,7 +49,7 @@ public final class FileIO {
                 throw new IncorrectCatFileException("Instruction is empty");
             }
         } catch (IOException | IncorrectCatFileException e) {
-            e.printStackTrace();
+            System.err.println(e.getMessage());
         }
         return instructions;
     }
@@ -62,7 +62,7 @@ public final class FileIO {
         try {
             return new BufferedReader(new FileReader(file));
         } catch (IOException e) {
-            e.printStackTrace();
+            System.err.println(e.getMessage());
         }
         return null;
     }

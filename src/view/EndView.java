@@ -27,6 +27,10 @@ public class EndView extends VBox {
         Button endButton = new Button("Afsluiten");
         endButton.setOnAction(e -> System.exit(0));
 
+        this.setOnKeyPressed(e -> {
+            System.exit(0);
+        });
+
         this.getChildren().addAll(title, score, endButton);
     }
 }
