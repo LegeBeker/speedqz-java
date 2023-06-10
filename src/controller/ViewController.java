@@ -85,10 +85,6 @@ public class ViewController extends Scene {
         return this.game.getScore();
     }
 
-    public int getClock() {
-        return this.clockModel.getCountdown();
-    }
-
     public String getInstructions() {
         return this.game.getInstructions();
     }

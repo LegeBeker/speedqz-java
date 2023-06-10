@@ -35,20 +35,10 @@ public class ClockModel extends Task<Void> {
 
     public ObjectBinding<Paint> getArcColor() {
         return Bindings.createObjectBinding(() -> {
-            if (this.timer.get() > 15) {
-                return Color.GREEN;
-            } else if (this.timer.get() > 9) {
-                return Color.YELLOW;
-            } else if (this.timer.get() > 2) {
-                return Color.ORANGE;
-            } else {
-                return Color.RED;
-            }
+            double red = 1 - ((double) this.timer.get() / COUNTDOWN);
+            double green = (double) this.timer.get() / COUNTDOWN;
+            return Color.color(red, green, 0);
         }, this.timer);
-    }
-
-    public String getCountdownString() {
-        return String.valueOf(this.timer.get());
     }
 
     public int getCountdown() {
