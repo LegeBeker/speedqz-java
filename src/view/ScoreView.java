@@ -13,7 +13,6 @@ import javafx.scene.text.Text;
 public class ScoreView extends VBox {
 
     private static final int SPACING = 20;
-    private static final int PADDING = 20;
 
     private static final int FONTSIZE = 50;
 
@@ -22,7 +21,7 @@ public class ScoreView extends VBox {
 
         this.setSpacing(SPACING);
         this.setAlignment(Pos.CENTER);
-        this.setPadding(new Insets(PADDING));
+        this.setPadding(new Insets(SPACING));
 
         Text roundText = new Text("round");
         roundText.setFill(Color.WHITE);
