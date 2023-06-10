@@ -13,9 +13,6 @@ import javafx.scene.text.Text;
 
 public class InputView extends VBox {
 
-    private static final int HEIGHT = 200;
-    private static final int WIDTH = 1020;
-
     private Text first;
     private Text second;
     private Text third;
@@ -24,7 +21,6 @@ public class InputView extends VBox {
     public InputView(final ViewController view) {
         this.setBackground(new Background(new BackgroundFill(Color.BLACK, null, null)));
 
-        this.setPrefSize(WIDTH, HEIGHT);
         this.setPadding(new Insets(20));
 
         Text instructions = new Text(view.getInstructions());

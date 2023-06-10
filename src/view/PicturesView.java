@@ -11,16 +11,11 @@ import javafx.scene.paint.Color;
 
 public class PicturesView extends GridPane {
 
-    private static final int HEIGHT = 520;
-    private static final int WIDTH = 1020;
-
     public PicturesView(final ViewController view) {
         this.setBackground(new Background(new BackgroundFill(Color.LIGHTBLUE, null, null)));
 
         this.setHgap(20);
         this.setVgap(20);
-
-        this.setPrefSize(WIDTH, HEIGHT);
 
         HashMap<String, Integer> chosenEntries = view.getChosenEntries();
 

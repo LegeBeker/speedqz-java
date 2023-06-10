@@ -38,7 +38,10 @@ public class GameView extends HBox {
         PicturesView pictures = new PicturesView(view);
         InputView input = new InputView(view);
 
+        VBox.setVgrow(pictures, Priority.ALWAYS);
+
         rightSide.getChildren().addAll(pictures, input);
+        HBox.setHgrow(rightSide, Priority.ALWAYS);
 
         this.getChildren().addAll(leftSide, rightSide);
     }
