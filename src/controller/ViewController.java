@@ -105,7 +105,7 @@ public class ViewController extends Scene {
             clockModel.stop();
             game.endRound(clockModel.getCountdown());
         }
-        if (game.getRoundNr() == 10) {
+        if (game.getRoundNr() == Game.AMOUNT_OF_ROUNDS) {
             openEndView();
             return;
         }
@@ -117,7 +117,7 @@ public class ViewController extends Scene {
         openGameView();
     }
 
-    public String getImagePath(String name) {
+    public String getImagePath(final String name) {
         return "file:resources/pics/" + game.getCategory() + "/" + name + ".jpg";
     }
 

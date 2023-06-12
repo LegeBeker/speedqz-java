@@ -12,10 +12,12 @@ import javafx.scene.paint.Paint;
 public class ClockModel extends Task<Void> {
 
     private static final int COUNTDOWN = 30;
-    private static final int FULLCIRCLE = 360;
+    private static final int FULL_CIRCLE = 360;
+
+    private static final int MILISECONDS = 1000;
 
     private IntegerProperty timer = new SimpleIntegerProperty(COUNTDOWN);
-    private IntegerProperty arcLength = new SimpleIntegerProperty(FULLCIRCLE);
+    private IntegerProperty arcLength = new SimpleIntegerProperty(FULL_CIRCLE);
 
     public ClockModel() {
         Thread thread = new Thread(this);
@@ -53,10 +55,10 @@ public class ClockModel extends Task<Void> {
             int finalI = i;
             Platform.runLater(() -> {
                 timer.set(finalI);
-                arcLength.set((int) (FULLCIRCLE * ((double) finalI / COUNTDOWN)));
+                arcLength.set((int) (FULL_CIRCLE * ((double) finalI / COUNTDOWN)));
 
             });
-            Thread.sleep(1000);
+            Thread.sleep(MILISECONDS);
         }
         return null;
     }

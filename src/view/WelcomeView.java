@@ -44,8 +44,8 @@ public class WelcomeView extends HBox {
         title.setFont(TITLEFONT);
         title.setTextAlignment(TextAlignment.CENTER);
 
-        Text description = new Text(
-                "SpeedQZ is een quiz waarbij je zo snel mogelijk de vragen moet beantwoorden. Je kan kiezen uit verschillende categorieën. Veel plezier!");
+        Text description = new Text("SpeedQZ is een quiz waarbij je zo snel mogelijk de vragen moet beantwoorden. "
+                + "Je kan kiezen uit verschillende categorieën. Veel plezier!");
         description.setFont(FONT);
         description.setTextAlignment(TextAlignment.CENTER);
         description.setWrappingWidth(WRAPPINGWIDTH);

@@ -62,7 +62,7 @@ public class BetweenView extends VBox {
         this.getChildren().addAll(correctAnswer, answer, title, roundAndScoreBox, nextRoundButton);
     }
 
-    private VBox createInfoBox(String label, String value) {
+    private VBox createInfoBox(final String label, final String value) {
         VBox infoBox = new VBox();
         infoBox.setBackground(new Background(new BackgroundFill(Color.BLACK, null, null)));
         infoBox.setPadding(new Insets(PADDING));

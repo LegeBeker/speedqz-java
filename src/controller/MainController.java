@@ -5,8 +5,8 @@ import javafx.stage.Stage;
 
 public class MainController extends Application {
 
-    private static final int MINHEIGHT = 800;
-    private static final int MINWIDTH = 1280;
+    private static final int MIN_HEIGHT = 800;
+    private static final int MIN_WIDTH = 1280;
 
     public void startup(final String[] args) {
         launch(args);
@@ -19,8 +19,8 @@ public class MainController extends Application {
 
         stage.setScene(view);
 
-        stage.setMinHeight(MINHEIGHT);
-        stage.setMinWidth(MINWIDTH);
+        stage.setMinHeight(MIN_HEIGHT);
+        stage.setMinWidth(MIN_WIDTH);
 
         stage.setResizable(false);
         stage.setFullScreen(true);

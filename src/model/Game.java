@@ -8,6 +8,11 @@ import java.util.Random;
 
 public class Game {
 
+    public static final int AMOUNT_OF_ROUNDS = 10;
+
+    private static final int AMOUNT_OF_ENTRIES = 4;
+    private static final int ASCII_VALUE_A = 65;
+
     private int score = 0;
     private int roundnr = 0;
     private String category;
@@ -18,17 +23,17 @@ public class Game {
 
     private DataModel dataModel;
 
-    public Game(String category) {
+    public Game(final String category) {
         this.category = category;
     }
 
     public void createQuestion() {
         dataModel = new DataModel(category);
-        chosenEntries = getRandomEntries(dataModel.getEntries(), 4);
+        chosenEntries = getRandomEntries(dataModel.getEntries(), AMOUNT_OF_ENTRIES);
 
         HashMap<Character, Integer> entryMap = new HashMap<>();
 
-        int index = 65; // Value for 'A'
+        int index = ASCII_VALUE_A;
         for (String entryKey : chosenEntries.keySet()) {
             entryMap.put((char) index++, (Integer) chosenEntries.get(entryKey));
         }
@@ -100,7 +105,7 @@ public class Game {
         return score;
     }
 
-    public void setInput(String input) {
+    public void setInput(final String input) {
         this.input = input;
     }
 

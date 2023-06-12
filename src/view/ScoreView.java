@@ -33,14 +33,14 @@ public class ScoreView extends VBox {
         this.getChildren().addAll(roundText, roundnrText, scoreText, scorenrText);
     }
 
-    private Text createTitle(String text) {
+    private Text createTitle(final String text) {
         Text title = new Text(text);
         title.setFill(Color.WHITE);
         title.setFont(FONT);
         return title;
     }
 
-    private Text createValue(String text) {
+    private Text createValue(final String text) {
         Text value = new Text(text);
         value.setFill(Color.ORANGE);
         value.setStroke(Color.WHITE);
