@@ -13,16 +13,18 @@ public class EndView extends VBox {
     private static final int FONTSIZE = 50;
     private static final int SPACING = 50;
 
+    private static final Font FONT = Font.font("Arial", FontWeight.BOLD, FONTSIZE);
+
     public EndView(final ViewController view) {
         this.setBackground(view.getBackground());
         this.setAlignment(Pos.CENTER);
         this.setSpacing(SPACING);
 
         Text title = new Text("Het spel is afgelopen!");
-        title.setFont(Font.font("Arial", FontWeight.BOLD, FONTSIZE));
+        title.setFont(FONT);
 
         Text score = new Text("Je hebt " + view.getScore() + " punten behaald!");
-        score.setFont(Font.font("Arial", FontWeight.BOLD, FONTSIZE));
+        score.setFont(FONT);
 
         Button endButton = new Button("Afsluiten");
         endButton.setOnAction(e -> System.exit(0));

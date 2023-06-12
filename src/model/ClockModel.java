@@ -14,35 +14,33 @@ public class ClockModel extends Task<Void> {
     private static final int COUNTDOWN = 30;
     private static final int FULLCIRCLE = 360;
 
-    private IntegerProperty timer;
-    private IntegerProperty arcLength;
+    private IntegerProperty timer = new SimpleIntegerProperty(COUNTDOWN);
+    private IntegerProperty arcLength = new SimpleIntegerProperty(FULLCIRCLE);
 
     public ClockModel() {
-        this.timer = new SimpleIntegerProperty(COUNTDOWN);
-        this.arcLength = new SimpleIntegerProperty(FULLCIRCLE);
         Thread thread = new Thread(this);
         thread.setDaemon(true);
         thread.start();
     }
 
     public IntegerProperty getTimer() {
-        return this.timer;
+        return timer;
     }
 
     public IntegerProperty getArcLength() {
-        return this.arcLength;
+        return arcLength;
     }
 
     public ObjectBinding<Paint> getArcColor() {
         return Bindings.createObjectBinding(() -> {
-            double red = 1 - ((double) this.timer.get() / COUNTDOWN);
-            double green = (double) this.timer.get() / COUNTDOWN;
+            double red = 1 - ((double) timer.get() / COUNTDOWN);
+            double green = (double) timer.get() / COUNTDOWN;
             return Color.color(red, green, 0);
-        }, this.timer);
+        }, timer);
     }
 
     public int getCountdown() {
-        return this.timer.get();
+        return timer.get();
     }
 
     public void stop() {
@@ -54,9 +52,8 @@ public class ClockModel extends Task<Void> {
         for (int i = COUNTDOWN; i >= 0; i--) {
             int finalI = i;
             Platform.runLater(() -> {
-                updateMessage(String.valueOf(finalI));
-                this.timer.set(finalI);
-                this.arcLength.set((int) (FULLCIRCLE * ((double) finalI / COUNTDOWN)));
+                timer.set(finalI);
+                arcLength.set((int) (FULLCIRCLE * ((double) finalI / COUNTDOWN)));
 
             });
             Thread.sleep(1000);

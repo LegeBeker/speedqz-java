@@ -8,33 +8,29 @@ import java.util.Random;
 
 public class Game {
 
-    private int score;
-    private int roundnr;
+    private int score = 0;
+    private int roundnr = 0;
     private String category;
 
-    private HashMap<String, Integer> chosenEntries;
-    private String input;
+    private Map<String, Integer> chosenEntries;
+    private String input = "";
     private String correctAnswer;
 
     private DataModel dataModel;
 
     public Game(String category) {
         this.category = category;
-        this.score = 0;
-        this.roundnr = 1;
-        this.input = "";
-
-        createQuestion();
     }
 
     public void createQuestion() {
-        this.dataModel = new DataModel(this.category);
-        this.chosenEntries = getRandomEntries(dataModel.getEntries(), 4);
+        dataModel = new DataModel(category);
+        chosenEntries = getRandomEntries(dataModel.getEntries(), 4);
 
         HashMap<Character, Integer> entryMap = new HashMap<>();
 
-        for (int i = 0; i < chosenEntries.size(); i++) {
-            entryMap.put((char) (i + 65), (Integer) chosenEntries.values().toArray()[i]);
+        int index = 65; // Value for 'A'
+        for (String entryKey : chosenEntries.keySet()) {
+            entryMap.put((char) index++, (Integer) chosenEntries.get(entryKey));
         }
 
         List<Map.Entry<Character, Integer>> list = new ArrayList<>(entryMap.entrySet());
@@ -45,11 +41,11 @@ public class Game {
             correctAnswerBuilder.append(entry.getKey());
         }
 
-        this.correctAnswer = correctAnswerBuilder.toString();
+        correctAnswer = correctAnswerBuilder.toString();
     }
 
-    private HashMap<String, Integer> getRandomEntries(final HashMap<String, Integer> entries, final int amount) {
-        HashMap<String, Integer> chosenEntries = new HashMap<>();
+    private Map<String, Integer> getRandomEntries(final Map<String, Integer> entries, final int amount) {
+        Map<String, Integer> chosenEntries = new HashMap<>();
         Random random = new Random();
 
         for (int i = 0; i < amount; i++) {
@@ -68,43 +64,40 @@ public class Game {
     }
 
     public int checkAnswer(final int seconds) {
-        if (isCorrect()) {
-            return seconds;
-        }
-        return -seconds;
+        return isCorrect() ? seconds : -seconds;
     }
 
     public Boolean isCorrect() {
-        return this.input.equals(this.correctAnswer);
+        return input.equals(correctAnswer);
     }
 
     public void endRound(final int seconds) {
-        this.score += checkAnswer(seconds);
+        score += checkAnswer(seconds);
     }
 
     public void startNewRound() {
-        this.roundnr++;
+        roundnr++;
         createQuestion();
     }
 
     public String getInstructions() {
-        return this.dataModel.getInstructions();
+        return dataModel.getInstructions();
     }
 
-    public HashMap<String, Integer> getChosenEntries() {
-        return this.chosenEntries;
+    public Map<String, Integer> getChosenEntries() {
+        return chosenEntries;
     }
 
     public int getRoundNr() {
-        return this.roundnr;
+        return roundnr;
     }
 
     public String getCategory() {
-        return this.dataModel.getCategory();
+        return dataModel.getCategory();
     }
 
     public int getScore() {
-        return this.score;
+        return score;
     }
 
     public void setInput(String input) {
@@ -112,6 +105,6 @@ public class Game {
     }
 
     public String getAnswer() {
-        return this.correctAnswer;
+        return correctAnswer;
     }
 }

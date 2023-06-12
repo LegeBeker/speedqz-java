@@ -13,6 +13,8 @@ import javafx.scene.text.FontWeight;
 
 public class ClockView extends Pane {
 
+    private static final int HEIGHT = 200;
+
     private static final int ARCRADIUS = 100;
     private static final int ARCDEGREE = 90;
 
@@ -25,11 +27,10 @@ public class ClockView extends Pane {
 
     public ClockView(final ViewController view) {
         this.setBackground(new Background(new BackgroundFill(Color.BLACK, null, null)));
+        this.setPrefHeight(HEIGHT);
 
         arc = new Arc(ARCRADIUS, ARCRADIUS, ARCRADIUS, ARCRADIUS, ARCDEGREE, FULLCIRCLE);
         arc.setType(ArcType.ROUND);
-
-        this.getChildren().addAll(arc);
 
         label = new Label();
         label.setTextFill(Color.WHITE);
@@ -38,7 +39,7 @@ public class ClockView extends Pane {
         label.layoutXProperty().bind(this.widthProperty().subtract(label.widthProperty()).divide(2));
         label.layoutYProperty().bind(this.heightProperty().subtract(label.heightProperty()).divide(2));
 
-        this.getChildren().add(label);
+        this.getChildren().addAll(arc, label);
     }
 
     public Label getLabel() {

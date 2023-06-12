@@ -19,56 +19,32 @@ public class BetweenView extends VBox {
     private static final int SPACING = 50;
     private static final int PADDING = 10;
 
+    private static final Font FONT = Font.font("Arial", FontWeight.BOLD, FONTSIZE);
+
     public BetweenView(final ViewController view) {
         this.setBackground(view.getBackground());
         this.setAlignment(Pos.CENTER);
         this.setSpacing(SPACING);
 
-        Text correctAnswer;
-        if (view.isCorrect()) {
-            correctAnswer = new Text("Correct! Het antwoord was:");
-        } else {
-            correctAnswer = new Text("Incorrect, Het juiste antwoord was:");
-        }
-        correctAnswer.setFont(Font.font("Arial", FontWeight.BOLD, FONTSIZE));
+        Text correctAnswer = view.isCorrect()
+                ? new Text("Correct! Het antwoord was:")
+                : new Text("Incorrect, Het juiste antwoord was:");
+        correctAnswer.setFont(FONT);
 
         Text answer = new Text(view.getAnswer());
-        answer.setFont(Font.font("Arial", FontWeight.BOLD, FONTSIZE));
+        answer.setFont(FONT);
 
         Text title = new Text("Tussenstand:");
-        title.setFont(Font.font("Arial", FontWeight.BOLD, FONTSIZE));
+        title.setFont(FONT);
 
-        HBox info = new HBox();
-        info.setAlignment(Pos.CENTER);
-        info.setSpacing(SPACING);
+        HBox roundAndScoreBox = new HBox();
+        roundAndScoreBox.setAlignment(Pos.CENTER);
+        roundAndScoreBox.setSpacing(SPACING);
 
-        VBox round = new VBox();
-        round.setBackground(new Background(new BackgroundFill(Color.BLACK, null, null)));
-        round.setPadding(new Insets(PADDING));
-        Text roundText = new Text("round");
-        roundText.setFill(Color.WHITE);
-        roundText.setFont(Font.font("Arial", FontWeight.BOLD, FONTSIZE));
-        Text roundnrText = new Text(Integer.toString(view.getRoundNr()));
-        roundnrText.setFill(Color.ORANGE);
-        roundnrText.setStroke(Color.WHITE);
-        roundnrText.setFont(Font.font("Arial", FontWeight.BOLD, FONTSIZE));
-        round.setAlignment(Pos.CENTER);
-        round.getChildren().addAll(roundText, roundnrText);
+        VBox round = createInfoBox("round", Integer.toString(view.getRoundNr()));
+        VBox score = createInfoBox("score", Integer.toString(view.getScore()));
 
-        VBox score = new VBox();
-        score.setBackground(new Background(new BackgroundFill(Color.BLACK, null, null)));
-        score.setPadding(new Insets(PADDING));
-        Text scoreText = new Text("score");
-        scoreText.setFill(Color.WHITE);
-        scoreText.setFont(Font.font("Arial", FontWeight.BOLD, FONTSIZE));
-        Text scorenrText = new Text(Integer.toString(view.getScore()));
-        scorenrText.setFill(Color.ORANGE);
-        scorenrText.setStroke(Color.WHITE);
-        scorenrText.setFont(Font.font("Arial", FontWeight.BOLD, FONTSIZE));
-        score.setAlignment(Pos.CENTER);
-        score.getChildren().addAll(scoreText, scorenrText);
-
-        info.getChildren().addAll(round, score);
+        roundAndScoreBox.getChildren().addAll(round, score);
 
         Button nextRoundButton = new Button("Volgende ronde");
         nextRoundButton.setOnAction(e -> view.startNewRound());
@@ -83,6 +59,26 @@ public class BetweenView extends VBox {
             }
         });
 
-        this.getChildren().addAll(correctAnswer, answer, title, info, nextRoundButton);
+        this.getChildren().addAll(correctAnswer, answer, title, roundAndScoreBox, nextRoundButton);
+    }
+
+    private VBox createInfoBox(String label, String value) {
+        VBox infoBox = new VBox();
+        infoBox.setBackground(new Background(new BackgroundFill(Color.BLACK, null, null)));
+        infoBox.setPadding(new Insets(PADDING));
+
+        Text labelText = new Text(label);
+        labelText.setFill(Color.WHITE);
+        labelText.setFont(FONT);
+
+        Text valueText = new Text(value);
+        valueText.setFill(Color.ORANGE);
+        valueText.setStroke(Color.WHITE);
+        valueText.setFont(FONT);
+
+        infoBox.setAlignment(Pos.CENTER);
+        infoBox.getChildren().addAll(labelText, valueText);
+
+        return infoBox;
     }
 }

@@ -13,6 +13,11 @@ import javafx.scene.text.Text;
 
 public class InputView extends VBox {
 
+    private static final Font INSTRUCTIONSFONT = Font.font("Arial", FontWeight.BOLD, 20);
+    private static final Font INPUTFONT = Font.font("Arial", FontWeight.BOLD, 75);
+
+    private static final int SPACING = 20;
+
     private Text first;
     private Text second;
     private Text third;
@@ -20,35 +25,19 @@ public class InputView extends VBox {
 
     public InputView(final ViewController view) {
         this.setBackground(new Background(new BackgroundFill(Color.BLACK, null, null)));
-
-        this.setPadding(new Insets(20));
+        this.setPadding(new Insets(SPACING));
 
         Text instructions = new Text(view.getInstructions());
         instructions.setFill(Color.ORANGE);
-        instructions.setFont(Font.font("Arial", FontWeight.BOLD, 20));
+        instructions.setFont(INSTRUCTIONSFONT);
 
         HBox input = new HBox();
-        input.setSpacing(20);
+        input.setSpacing(SPACING);
 
-        first = new Text("_");
-        first.setFill(Color.ORANGE);
-        first.setStroke(Color.WHITE);
-        first.setFont(Font.font("Arial", FontWeight.BOLD, 75));
-
-        second = new Text("_");
-        second.setFill(Color.ORANGE);
-        second.setStroke(Color.WHITE);
-        second.setFont(Font.font("Arial", FontWeight.BOLD, 75));
-
-        third = new Text("_");
-        third.setFill(Color.ORANGE);
-        third.setStroke(Color.WHITE);
-        third.setFont(Font.font("Arial", FontWeight.BOLD, 75));
-
-        fourth = new Text("_");
-        fourth.setFill(Color.ORANGE);
-        fourth.setStroke(Color.WHITE);
-        fourth.setFont(Font.font("Arial", FontWeight.BOLD, 75));
+        first = createInputText();
+        second = createInputText();
+        third = createInputText();
+        fourth = createInputText();
 
         input.getChildren().addAll(first, second, third, fourth);
 
@@ -85,6 +74,14 @@ public class InputView extends VBox {
                     break;
             }
         });
+    }
+
+    private Text createInputText() {
+        Text t = new Text("_");
+        t.setFill(Color.ORANGE);
+        t.setStroke(Color.WHITE);
+        t.setFont(INPUTFONT);
+        return t;
     }
 
     private void setLetter(final String letter) {

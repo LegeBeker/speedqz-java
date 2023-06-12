@@ -1,39 +1,41 @@
 package model;
 
-import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
 
 import dal.FileIO;
 
 public class DataModel {
-    private static String[] categories = {
+    private static final String[] CATEGORIES = {
             "speed",
             "paintings",
             "buildings"
     };
 
     private String category;
-    private HashMap<String, Integer> entries;
+    private Map<String, Integer> entries;
     private String instructions;
 
     public DataModel(final String category) {
         this.category = category;
         if (category.equals("mix")) {
-            int randomIndex = (int) (Math.random() * categories.length);
-            this.category = categories[randomIndex];
+            Random random = new Random();
+            int randomIndex = random.nextInt(CATEGORIES.length);
+            this.category = CATEGORIES[randomIndex];
         }
-        this.entries = FileIO.getCategoryEntries(this.category);
-        this.instructions = FileIO.getInstructions(this.category);
+        entries = FileIO.getCategoryEntries(this.category);
+        instructions = FileIO.getInstructions(this.category);
     }
 
     public String getCategory() {
-        return this.category;
+        return category;
     }
 
-    public HashMap<String, Integer> getEntries() {
-        return this.entries;
+    public Map<String, Integer> getEntries() {
+        return entries;
     }
 
     public String getInstructions() {
-        return this.instructions;
+        return instructions;
     }
 }

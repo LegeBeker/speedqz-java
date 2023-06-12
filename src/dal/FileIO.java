@@ -5,14 +5,15 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Map;
 
 public final class FileIO {
 
     private FileIO() {
     }
 
-    public static HashMap<String, Integer> getCategoryEntries(final String category) {
-        HashMap<String, Integer> map = new HashMap<>();
+    public static Map<String, Integer> getCategoryEntries(final String category) {
+        Map<String, Integer> map = new HashMap<>();
 
         try (BufferedReader reader = getReader(category)) {
             String line = reader.readLine();
@@ -56,8 +57,7 @@ public final class FileIO {
 
     public static BufferedReader getReader(final String category) {
         String categoryFile = "/files/cat_" + category + ".txt";
-        String path = FileIO.class.getResource(categoryFile).getPath();
-        java.io.File file = new File(path);
+        File file = new File(FileIO.class.getResource(categoryFile).getPath());
 
         try {
             return new BufferedReader(new FileReader(file));

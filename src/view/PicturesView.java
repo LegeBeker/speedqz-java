@@ -1,6 +1,6 @@
 package view;
 
-import java.util.HashMap;
+import java.util.Map;
 
 import controller.ViewController;
 import javafx.geometry.Pos;
@@ -11,13 +11,15 @@ import javafx.scene.paint.Color;
 
 public class PicturesView extends GridPane {
 
+    private static final int SPACING = 20;
+
     public PicturesView(final ViewController view) {
         this.setBackground(new Background(new BackgroundFill(Color.LIGHTBLUE, null, null)));
 
-        this.setHgap(20);
-        this.setVgap(20);
+        this.setHgap(SPACING);
+        this.setVgap(SPACING);
 
-        HashMap<String, Integer> chosenEntries = view.getChosenEntries();
+        Map<String, Integer> chosenEntries = view.getChosenEntries();
 
         Character c = 'A';
         for (String key : chosenEntries.keySet()) {

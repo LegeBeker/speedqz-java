@@ -1,6 +1,6 @@
 package controller;
 
-import java.util.HashMap;
+import java.util.Map;
 
 import javafx.scene.Scene;
 import javafx.scene.layout.Background;
@@ -26,47 +26,46 @@ public class ViewController extends Scene {
     public ViewController() {
         super(new Pane());
 
-        this.background = new Background(new BackgroundFill(Color.BEIGE, null, null));
+        background = new Background(new BackgroundFill(Color.BEIGE, null, null));
 
-        this.openWelcomeView();
+        openWelcomeView();
     }
 
-    public void changeView(final Pane pane) {
-        this.setOnKeyPressed(null);
-        this.setRoot(pane);
+    public void setView(final Pane pane) {
+        setOnKeyPressed(null);
+        setRoot(pane);
     }
 
     public Background getBackground() {
-        return this.background;
+        return background;
     }
 
     public void openWelcomeView() {
-        changeView(new WelcomeView(this));
+        setView(new WelcomeView(this));
     }
 
     public void openEndView() {
-        changeView(new EndView(this));
+        setView(new EndView(this));
     }
 
-    public void openGameView(final String category) {
-        this.game = new Game(category);
-        startNewClock();
-        this.setRoot(new GameView(this, this.clockView));
+    public void startNewGame(final String category) {
+        game = new Game(category);
+        startNewRound();
     }
 
     public void openGameView() {
         startNewClock();
-        this.setRoot(new GameView(this, this.clockView));
+        setRoot(new GameView(this, clockView));
     }
 
     public void startNewClock() {
-        this.clockModel = new ClockModel();
-        this.clockView = new ClockView(this);
-        this.clockView.getArc().lengthProperty().bind(this.clockModel.getArcLength());
-        this.clockView.getLabel().textProperty().bind(this.clockModel.getTimer().asString());
-        this.clockView.getArc().fillProperty().bind(this.clockModel.getArcColor());
+        clockModel = new ClockModel();
+        clockView = new ClockView(this);
+        clockView.getArc().lengthProperty().bind(clockModel.getArcLength());
+        clockView.getLabel().textProperty().bind(clockModel.getTimer().asString());
+        clockView.getArc().fillProperty().bind(clockModel.getArcColor());
 
-        this.clockModel.getTimer().addListener((observable, oldValue, newValue) -> {
+        clockModel.getTimer().addListener((observable, oldValue, newValue) -> {
             if (newValue.intValue() == 0) {
                 endRound(true);
             }
@@ -74,39 +73,39 @@ public class ViewController extends Scene {
     }
 
     public void openBetweenView() {
-        changeView(new BetweenView(this));
+        setView(new BetweenView(this));
     }
 
     public int getRoundNr() {
-        return this.game.getRoundNr();
+        return game.getRoundNr();
     }
 
     public int getScore() {
-        return this.game.getScore();
+        return game.getScore();
     }
 
     public String getInstructions() {
-        return this.game.getInstructions();
+        return game.getInstructions();
     }
 
-    public HashMap<String, Integer> getChosenEntries() {
-        return this.game.getChosenEntries();
+    public Map<String, Integer> getChosenEntries() {
+        return game.getChosenEntries();
     }
 
     public void setInput(final String input) {
-        this.game.setInput(input);
+        game.setInput(input);
     }
 
     public Boolean isCorrect() {
-        return this.game.isCorrect();
+        return game.isCorrect();
     }
 
     public void endRound(final Boolean timeOut) {
         if (!timeOut) {
-            this.clockModel.stop();
-            this.game.endRound(this.clockModel.getCountdown());
+            clockModel.stop();
+            game.endRound(clockModel.getCountdown());
         }
-        if (this.game.getRoundNr() == 10) {
+        if (game.getRoundNr() == 10) {
             openEndView();
             return;
         }
@@ -114,15 +113,15 @@ public class ViewController extends Scene {
     }
 
     public void startNewRound() {
-        this.game.startNewRound();
+        game.startNewRound();
         openGameView();
     }
 
     public String getImagePath(String name) {
-        return "file:resources/pics/" + this.game.getCategory() + "/" + name + ".jpg";
+        return "file:resources/pics/" + game.getCategory() + "/" + name + ".jpg";
     }
 
     public String getAnswer() {
-        return this.game.getAnswer();
+        return game.getAnswer();
     }
 }

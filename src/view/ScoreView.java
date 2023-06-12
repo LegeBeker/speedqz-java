@@ -15,6 +15,7 @@ public class ScoreView extends VBox {
     private static final int SPACING = 20;
 
     private static final int FONTSIZE = 50;
+    private static final Font FONT = Font.font("Arial", FontWeight.BOLD, FONTSIZE);
 
     public ScoreView(final int roundnr, final int score) {
         this.setBackground(new Background(new BackgroundFill(Color.BLACK, null, null)));
@@ -23,22 +24,27 @@ public class ScoreView extends VBox {
         this.setAlignment(Pos.CENTER);
         this.setPadding(new Insets(SPACING));
 
-        Text roundText = new Text("round");
-        roundText.setFill(Color.WHITE);
-        roundText.setFont(Font.font("Arial", FontWeight.BOLD, FONTSIZE));
-        Text roundnrText = new Text(Integer.toString(roundnr));
-        roundnrText.setFill(Color.ORANGE);
-        roundnrText.setStroke(Color.WHITE);
-        roundnrText.setFont(Font.font("Arial", FontWeight.BOLD, FONTSIZE));
+        Text roundText = createTitle("round");
+        Text roundnrText = createValue(Integer.toString(roundnr));
 
-        Text scoreText = new Text("score");
-        scoreText.setFill(Color.WHITE);
-        scoreText.setFont(Font.font("Arial", FontWeight.BOLD, FONTSIZE));
-        Text scorenrText = new Text(Integer.toString(score));
-        scorenrText.setFill(Color.ORANGE);
-        scorenrText.setStroke(Color.WHITE);
-        scorenrText.setFont(Font.font("Arial", FontWeight.BOLD, FONTSIZE));
+        Text scoreText = createTitle("score");
+        Text scorenrText = createValue(Integer.toString(score));
 
         this.getChildren().addAll(roundText, roundnrText, scoreText, scorenrText);
+    }
+
+    private Text createTitle(String text) {
+        Text title = new Text(text);
+        title.setFill(Color.WHITE);
+        title.setFont(FONT);
+        return title;
+    }
+
+    private Text createValue(String text) {
+        Text value = new Text(text);
+        value.setFill(Color.ORANGE);
+        value.setStroke(Color.WHITE);
+        value.setFont(FONT);
+        return value;
     }
 }
