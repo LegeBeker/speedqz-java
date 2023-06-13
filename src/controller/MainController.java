@@ -2,6 +2,7 @@ package controller;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class MainController extends Application {
 
@@ -24,6 +25,7 @@ public class MainController extends Application {
 
         stage.setResizable(false);
         stage.setFullScreen(true);
+        stage.initStyle(StageStyle.UNDECORATED);
 
         stage.centerOnScreen();
         stage.isAlwaysOnTop();
