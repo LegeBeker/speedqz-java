@@ -19,8 +19,9 @@ public class ClockModel extends Task<Void> {
     private IntegerProperty timer = new SimpleIntegerProperty(COUNTDOWN);
     private IntegerProperty arcLength = new SimpleIntegerProperty(FULL_CIRCLE);
 
+    private Thread thread = new Thread(this);
+
     public ClockModel() {
-        Thread thread = new Thread(this);
         thread.setDaemon(true);
         thread.start();
     }
@@ -46,6 +47,7 @@ public class ClockModel extends Task<Void> {
     }
 
     public void stop() {
+        thread.interrupt();
         cancel();
     }
 
