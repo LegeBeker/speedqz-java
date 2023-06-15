@@ -58,7 +58,7 @@ public class Game {
             String randomKey = (String) entries.keySet().toArray()[randomIndex];
             int randomValue = entries.get(randomKey);
 
-            if (!chosenEntries.containsKey(randomKey)) {
+            if (!chosenEntries.containsKey(randomKey) && !chosenEntries.containsValue(randomValue)) {
                 chosenEntries.put(randomKey, randomValue);
             } else {
                 i--;
