@@ -69,7 +69,12 @@ public class Game {
     }
 
     public int checkAnswer(final int seconds) {
-        return isCorrect() ? seconds : -seconds;
+        if (isCorrect()) {
+            return seconds;
+        } else if (score != 0 && seconds <= score) {
+            return -seconds;
+        }
+        return 0;
     }
 
     public Boolean isCorrect() {
